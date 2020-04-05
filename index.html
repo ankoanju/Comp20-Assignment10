@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+	<title> Assignment 10: API Fun! </title>
+	<meta charset="utf-8"/>
+	<script>
+		function getRecipe() {
+			var ingredient = document.getElementById("ingredient").value;
+
+			// If the user typed in an ingredient
+			if ( ingredient != null ) {
+				// Then make instance of request object to make HTTP request
+				var request = new XMLHttpRequest();
+
+				// Set URL for the AJAX request to be the JSON file
+				request.open("GET", "http://www.recipepuppy.com/api/?q="+ingredient, true);
+
+				// Set up event handler/callback
+				request.onreadystatechange = function getData() {
+
+					// Option 1: readyState 4 means done; status 200 means ok
+					if ( request.readyState == 4 && request.status == 200 ) {
+						// Success! 
+						console.log("are you here");
+						var recipes = JSON.parse(request.responseText);
+						document.getElementById("displaying").innerHTML = recipes["title"]; 
+
+					} else if (request.readyState == 4 && request.status != 200) {
+						console.log(request.readyState + " " + request.status);
+						document.getElementById("displaying").innerHTML = "Error.";
+
+					}else if (request.readyState == 3) {
+						document.getElementById("displaying").innerHTML = "Still loading... try again!";
+
+					}
+				}
+
+			
+			}
+			// Fire off the HTTP request
+			request.send();
+
+
+		}
+
+		
+
+
+	</script>
+</head>
+
+<body>
+	<label for = "ingredient"> Enter ingredient: </label>
+	<input type = "text" id = "ingredient">
+	<input type = "submit" onclick = "getRecipe();">
+
+	<p id = "displaying"> </p>
+</body>
+
+
+
+
+
+
+
+</html>
