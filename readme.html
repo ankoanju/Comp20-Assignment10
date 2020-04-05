@@ -1,0 +1,28 @@
+<!doctyle html>
+<html>
+<head>
+	<title> Assignment 10: API Fun! </title>
+	<meta charset="utf-8"/>
+	<link rel = "stylesheet" type = "text/css" href = "main.css">
+</head>
+<body>
+	<h1> README </h1>
+	<a href="index.html" class = "linked"> Click to go back </a>
+
+	<h2> Question 1: Describe the API you selected and what it does. </h2>
+	<p> I selected a free online API called "TheMealDB" which provides data for meals online that organizes according by first letter, name, id, ingredients, or randomly. I specifically chose the one that lists meals according to the main ingredient. I then proceeded to display the name and the picture of the meal. </p>
+
+	<h2> Question 2: Cite the website where you found it. </h2>
+	<p> https://www.themealdb.com/api.php </p>
+
+	<h2> Question 3: Describe the options you used for the API request. </h2>
+	<p> I had four options for the API request. When the readyState was 4 and the status was 200, the program proceeds to reading the results and parses them into objects. I had to include an if statement in order for it to display a message for the ingredients that were not found in the API database (i.e. no meals on the API database). The other option was if the readyState was 4, indicating that the fetch operation is complete, but the status is not 200. This is because the readyState being 4 could either mean that the data transfer was successful or not (failed), so this is for the data transfers that failed. The other option was for the readyState being 3, which indicates that the response text is being received or it is an empty string. Since Option 1 takes into account if its an empty string, Option 3 does not include those without recipes in the database. (Without this, all ingredients without recipes seemed that it was loading the whole time.) Finally, the last option takes into account if the page was forbidden or not found. Since I do not want it to display a 403 or 404 page, I wanted to have this option to display a kind message if it happens. </p>
+
+	<h2> Question 4: Give two applications where this API would be helpful. </h2>
+	<p> One application would be for parents who are cooking at home. They can look into their pantry or fridge and check what ingredients they have. From their main ingredient, they can use this API to look through what kind of meals that can be made. They might be surprised at what they can make from entering a single ingredient! </p>
+	<p> Another would be used for online supermarket websites. If a user puts a product in their cart, they can use this API to suggest meals that customers can make, and appeal them to buy other products as well. These businesses can also use this API to sell their product, for instance, if they're trying to sell their soy sauce, they can show the variety of meals that can be made from their product. </p>
+
+
+</body>
+
+</html>

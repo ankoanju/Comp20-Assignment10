@@ -1,0 +1,86 @@
+body{
+	background-color: #FFFBFF;
+	text-align: center;
+	font-size: 25px;
+}
+
+h1 {
+	color: #D3AB9E;
+	text-shadow: 4px 3px 0px #022B3A;
+	text-align: center;
+	letter-spacing: 0.2px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 50px;
+	font-style: bold;
+	font-variant: small-caps;
+}
+
+h2 {
+	color: #D3AB9E;
+	text-align: center;
+	letter-spacing: 0.2px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 18px;
+	font-style: bold;
+	font-variant: small-caps;
+}
+
+p {
+	color: #022B3A;
+	text-align: center;
+	letter-spacing: 0.2px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 12px;
+	margin-left: 100px;
+	margin-right: 100px;
+}
+
+.labtext {
+	text-align: center;
+	font-family: Tahoma, sans-serif;
+	font-size: 16px;
+	font-style: bold;
+}
+
+.submitbutton {
+	background-color:#D3AB9E;
+	border-radius:20px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family: Tahoma, sans-serif;
+	font-size:13px;
+	padding:7px 9px;
+	text-decoration:none;
+}
+
+.submitbutton:hover {
+	background-color: #D3947E;
+}
+
+.linked {
+	background-color:#024056;
+	border-radius:20px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family: Tahoma, sans-serif;
+	font-size:13px;
+	padding:7px 9px;
+	text-decoration:none;
+}
+
+.linked:hover{
+	background-color: #012735;
+}
+
+input[type=text]
+{
+	width: 175px;
+	height: 30px;
+	text-align: center;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}

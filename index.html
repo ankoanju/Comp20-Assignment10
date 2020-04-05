@@ -3,6 +3,23 @@
 <head>
 	<title> Assignment 10: API Fun! </title>
 	<meta charset="utf-8"/>
+	<link rel = "stylesheet" type = "text/css" href = "main.css">
+	<style type = "text/css">
+		.grid {
+			color: #022B3A;
+			padding: 1rem;
+			height: 10em;
+			font-size: 25px;
+		}
+
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			display: grid;
+			grid-gap: 1rem;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		}
+	</style>
 	<script>
 		function getRecipe() {
 			var ingredient = document.getElementById("ingredient").value;
@@ -13,7 +30,7 @@
 				var request = new XMLHttpRequest();
 
 				// Set URL for the AJAX request to be the JSON file
-				request.open("GET", "http://www.recipepuppy.com/api/?q="+ingredient, true);
+				request.open("GET", "https://www.themealdb.com/api/json/v1/1/filter.php?i="+ingredient+"&APPID=1", true);
 
 				// Set up event handler/callback
 				request.onreadystatechange = function getData() {
@@ -21,46 +38,53 @@
 					// Option 1: readyState 4 means done; status 200 means ok
 					if ( request.readyState == 4 && request.status == 200 ) {
 						// Success! 
-						console.log("are you here");
-						var recipes = JSON.parse(request.responseText);
-						document.getElementById("displaying").innerHTML = recipes["title"]; 
+						result = request.responseText;
+						var recipes = JSON.parse( result );
 
+						var mealnames = "<div class = 'container'>";
+
+						if ( recipes["meals"] != null ) {
+							for ( i = 0; i < recipes["meals"].length; i++ ) {
+								mealnames += "<div class = 'grid'>" + recipes["meals"][i]["strMeal"] + "<br />" + "<img src = '" + recipes["meals"][i]["strMealThumb"] + "' height='200'>" + "</div>";
+							}
+							mealnames += "</div>";
+							document.getElementById("displaying").innerHTML = mealnames;
+						} else {
+							document.getElementById("displaying").innerHTML = "Sorry, no recipes found :(";
+						}
+						
+					// Option 2: if status is not 200, something is wrong.
 					} else if (request.readyState == 4 && request.status != 200) {
-						console.log(request.readyState + " " + request.status);
 						document.getElementById("displaying").innerHTML = "Error.";
 
-					}else if (request.readyState == 3) {
+					// Option 3: readyState 3 means loading
+					} else if (request.readyState == 3) {
 						document.getElementById("displaying").innerHTML = "Still loading... try again!";
 
+					// Option 4: if status is 404 it is forbidden and if 404 page not found
+					} else if (request.status > 400 ) {
+						document.getElementById("displaying").innerHTML = "Sorry, no recipes found";
 					}
 				}
-
 			
 			}
 			// Fire off the HTTP request
 			request.send();
 
-
 		}
-
-		
-
 
 	</script>
 </head>
 
 <body>
-	<label for = "ingredient"> Enter ingredient: </label>
-	<input type = "text" id = "ingredient">
-	<input type = "submit" onclick = "getRecipe();">
+
+	<h1> What's For Tonight?</h1>
+	<a href="readme.html" class = "linked"> Click to access README</a> <br /> <br />
+
+	<label for = "ingredient" class = "labtext"> Enter ingredient: </label>
+	<input type = "text" id = "ingredient" class = "textbox" placeholder = "e.g. tomato">
+	<input type = "submit" class = "submitbutton" onclick = "getRecipe();">
 
 	<p id = "displaying"> </p>
 </body>
-
-
-
-
-
-
-
 </html>
